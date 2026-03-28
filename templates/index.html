@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prime Finder</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; margin-top: 50px; }
+        input { padding: 10px; border-radius: 5px; border: 1px solid #ccc; }
+        button { padding: 10px 20px; background: #007BFF; color: white; border: none; cursor: pointer; }
+        .result { margin-top: 20px; font-weight: bold; color: #2c3e50; }
+    </style>
+</head>
+<body>
+    <h2>Find the Next 10 Primes</h2>
+    <form method="POST">
+        <input type="number" name="number" placeholder="Enter number X" required>
+        <button type="submit">Calculate</button>
+    </form>
+
+    {% if primes %}
+        <div class="result">
+            <h3>Primes larger than {{ x_value }}:</h3>
+            <p>{{ primes|join(', ') }}</p>
+        </div>
+    {% endif %}
+</body>
+</html>
