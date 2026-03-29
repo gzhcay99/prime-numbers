@@ -1,26 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Prime Finder</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime Number Finder</title>
     <style>
-        body { font-family: sans-serif; text-align: center; margin-top: 50px; }
-        input { padding: 10px; border-radius: 5px; border: 1px solid #ccc; }
-        button { padding: 10px 20px; background: #007BFF; color: white; border: none; cursor: pointer; }
-        .result { margin-top: 20px; font-weight: bold; color: #2c3e50; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; background-color: #f4f7f6; margin: 0; }
+        .card { background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); text-align: center; width: 100%; max-width: 400px; }
+        input { width: 80%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 6px; font-size: 1rem; }
+        button { width: 87%; padding: 12px; background-color: #007bff; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; transition: background 0.3s; }
+        button:hover { background-color: #0056b3; }
+        .results { margin-top: 20px; text-align: left; background: #e9ecef; padding: 15px; border-radius: 8px; }
+        ul { padding-left: 20px; }
     </style>
 </head>
 <body>
-    <h2>Find the Next 10 Primes</h2>
-    <form method="POST">
-        <input type="number" name="number" placeholder="Enter number X" required>
-        <button type="submit">Calculate</button>
-    </form>
+    <div class="card">
+        <h2>Prime Finder</h2>
+        <p>Enter a number to find the next 10 primes.</p>
+        <form method="POST">
+            <input type="number" name="number" placeholder="Enter X..." required>
+            <button type="submit">Find Primes</button>
+        </form>
 
-    {% if primes %}
-        <div class="result">
-            <h3>Primes larger than {{ x_value }}:</h3>
-            <p>{{ primes|join(', ') }}</p>
-        </div>
-    {% endif %}
+        {% if primes %}
+            <div class="results">
+                <strong>Next 10 primes after {{ x_value }}:</strong>
+                {% if primes is iterable and primes is not string %}
+                    <ul>
+                        {% for p in primes %}
+                            <li>{{ p }}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>{{ primes }}</p>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
 </body>
 </html>
